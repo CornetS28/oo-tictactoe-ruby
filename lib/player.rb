@@ -1,11 +1,20 @@
-class Player
-  attr_reader :token
+class Player 
+  attr_accessor :name , :figure
 
-  def initialize token
-    @token = token
+  def name=(name)
+    @name = name
   end
 
-  def move board
-    puts "Enter a position 1-9 (#{token}) :"
+  def figure=(figure)
+    @figure = figure
   end
+
+  def get_figure
+    @figure
+  end
+
+  def get_name
+    @name
+  end
+
 end
