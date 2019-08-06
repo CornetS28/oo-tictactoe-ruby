@@ -36,7 +36,7 @@ class Game
     winning_combinations .each {|conbo|
       count = 0
       conbo.each {|position|
-        count +=1 if cell[position - 1] == player.figure
+        count += 1 if cell[position - 1] == player.figure
       }
       win = true if count == 3
     }
