@@ -27,13 +27,13 @@ class Game
     end
   end
   def check_for_winner(cell,player)
-    winning_combinations = [
+    $winning_combinations = [
       [1,2,3],[4,5,6],[7,8,9],
       [1,4,7],[2,5,8],[3,6,9],
       [1,5,9],[3,5,7]
     ]
     win = false
-    winning_combinations .each {|conbo|
+    $winning_combinations .each {|conbo|
       count = 0
       conbo.each {|position|
         count += 1 if cell[position - 1] == player.figure
