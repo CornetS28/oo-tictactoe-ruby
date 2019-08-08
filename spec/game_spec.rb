@@ -15,6 +15,10 @@ describe Game do
     it 'initializes it' do
       expect(player1.get_name).to eql('Emir')
     end
+    
+    it 'doesnt return the name' do
+      expect(player1.get_name).not_to eql('')
+    end
   end
 
   describe '#board_change' do
@@ -22,6 +26,10 @@ describe Game do
       game.board_change(2)
      
       expect($cell).to eql([1,'X',3,4,5,6,7,8,9])
+    end
+    
+    it 'desnt change the board' do
+      expect($cell).not_to eql([1,2,3,4,5,6,7,8,9])
     end
   end
 
@@ -40,6 +48,10 @@ describe Game do
       expect($winning_combinations).to include([1,5,9])
       expect($winning_combinations).to include([3,5,7])
     end
+    
+    it 'defines a wrong constant WIN_COMBINATIONS with arrays for each win combination' do
+      expect($winning_combinations).not_to include([1,7,9])
+    end
 
     let(:numbers) { [4,5,6,7,8,9] } 
     it 'returns true if winner' do
@@ -47,11 +59,21 @@ describe Game do
     
       expect(game.check_for_winner(win_board, player1)).to eql(true)
     end
+    
+    it 'it returns false when winner' do
+      win_board = ['X', 'X', 'X', numbers]
+      expect(game.check_for_winner(win_board, player1)).not_to eql(false)
+    end
 
     it 'returns false if no winner' do
       win_board = ['X', 'X', 'O', numbers]
     
       expect(game.check_for_winner(win_board, player1)).to eql(false)
+    end
+    
+    it 'returns winner when false' do
+      win_board = ['X', 'X', 'O', numbers]
+      expect(game.check_for_winner(win_board, player1)).not_to eql(true)
     end
 
   end
@@ -60,6 +82,11 @@ describe Game do
     it 'checks for draw' do 
       draw_board = ['X', 'O', 'X', 'X', 'O', 'X', 'O', 'X', 'O']
       expect(game.check_for_draw(draw_board)).to eql(false)
+    end
+    
+    it 'doesnt check for draw' do
+      draw_board = ['X', 'O', 'X', 'X', 'O', 'X', 'O', 'X', 'O']
+      expect(game.check_for_draw(draw_board)).not_to eql(true)
     end
   end
 end
